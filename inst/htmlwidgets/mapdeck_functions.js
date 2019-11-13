@@ -60,9 +60,16 @@ function md_update_tooltip({x, y, object, layer, index}) {
     // object is the data object sent to the layer function
 
     if ( HTMLWidgets.shinyMode ) {
+        console.log('object');
         console.log(object);
-        console.log(layer.props.map_id);
-        Shiny.onInputChange(layer.props.map_id + "_" + layer.props.id + "_hover");
+        console.log('index');
+        console.log(index);
+        console.log('layer');
+        console.log(layer);
+        console.log('=====================');
+        console.log(layer.props.map_id + "_" + "polygon" + "_hover");
+        console.log('=====================');
+        Shiny.onInputChange(layer.props.map_id + "_" + "polygon" + "_hover");
     }
 
     if( !md_div_exists( 'mapdecktooltip'+layer.props.map_id ) ) {

@@ -83,8 +83,8 @@ HTMLWidgets.widget({
 						  Shiny.onInputChange(el.id + '_view_change', viewState);
 			      },
 			      onDragStart(info, event){
-			      	// if (!HTMLWidgets.shinyMode) { return; }
-			      	Shiny.onInputChange(el.id +'_drag_start', info);
+			      	if (!HTMLWidgets.shinyMode) { return; }
+			      	// Shiny.onInputChange(el.id +'_drag_start', info);
 			      },
 			      onDrag(info, event){
 			      	if (!HTMLWidgets.shinyMode) { return; }
