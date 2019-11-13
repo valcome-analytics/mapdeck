@@ -16,7 +16,7 @@ function add_line_geo( map_id, map_type, line_data, layer_id, auto_highlight, hi
     onClick: info => md_layer_click( map_id, "line", info ),
     onHover: md_update_tooltip,
     autoHighlight: auto_highlight,
-    highlightColor: md_hexToRGBA( highlight_colour ),
+    highlightColor: md_hexToRGBA(highlight_colour),
     transitions: js_transition || {}
   });
 
@@ -50,7 +50,7 @@ function add_line_polyline( map_id, map_type, line_data, layer_id, auto_highligh
     onClick: info => md_layer_click( map_id, "line", info ),
     onHover: md_update_tooltip,
     autoHighlight: auto_highlight,
-    highlightColor: md_hexToRGBA( highlight_colour ),
+    highlightColor: md_hexToRGBA(highlight_colour),
     transitions: js_transition || {}
   });
 

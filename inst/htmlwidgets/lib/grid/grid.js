@@ -27,7 +27,7 @@ function add_grid_geo( map_id, map_type, grid_data, layer_id, cell_size, extrude
 
     onClick: info => md_layer_click( map_id, "grid", info ),
     autoHighlight: auto_highlight,
-    highlightColor: md_hexToRGBA( highlight_colour ),
+    highlightColor: md_hexToRGBA(highlight_colour),
     transitions: js_transition || {},
     brushingRadius: brush_radius,
     extensions: extensions,
@@ -71,7 +71,7 @@ function add_grid_polyline( map_id, map_type, grid_data, layer_id, cell_size, ex
     elevationAggregation: elevation_function,
 
     autoHighlight: auto_highlight,
-    highlightColor: md_hexToRGBA( highlight_colour ),
+    highlightColor: md_hexToRGBA(highlight_colour),
     transitions: js_transition || {},
     brushingRadius: brush_radius,
     extensions: extensions,

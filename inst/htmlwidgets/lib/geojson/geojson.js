@@ -32,7 +32,7 @@ function add_geojson_sf( map_id, map_type, geojson, layer_id, light_settings, au
     lightSettings: light_settings,
     onClick: info => md_layer_click( map_id, "geojson", info ),
     autoHighlight: auto_highlight,
-    highlightColor: md_hexToRGBA( highlight_colour ),
+    highlightColor: md_hexToRGBA(highlight_colour),
     onHover: md_update_tooltip,
     transitions: js_transition || {}
   });
@@ -80,7 +80,7 @@ function add_geojson( map_id, map_type, geojson, layer_id, light_settings, auto_
     lightSettings: light_settings,
     onClick: info => md_layer_click( map_id, "geojson", info ),
     autoHighlight: auto_highlight,
-    highlightColor: md_hexToRGBA( highlight_colour ),
+    highlightColor: md_hexToRGBA(highlight_colour),
     onHover: md_update_tooltip,
     transitions: js_transition || {}
   });

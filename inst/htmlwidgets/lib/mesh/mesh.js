@@ -52,7 +52,7 @@ function add_mesh( map_id, map_type, polygon_data, layer_id, light_settings, aut
     getElevation: d => d.properties.elevation,
     lightSettings: light_settings,
     autoHighlight: auto_highlight,
-    highlightColor: md_hexToRGBA( highlight_colour ),
+    highlightColor: md_hexToRGBA(highlight_colour),
     onHover: md_update_tooltip,
     onClick: info => md_layer_click( map_id, "mesh", info ),
     transitions: js_transition || {}

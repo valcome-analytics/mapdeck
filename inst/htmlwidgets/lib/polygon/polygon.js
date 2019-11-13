@@ -25,17 +25,12 @@ function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_setting
         transitions: js_transition || {}
     });
 
-  console.log(JSON.stringify(polygonLayer));
-
-
-  if (map_type == "google_map") {
+    if (map_type == "google_map") {
         md_update_overlay(map_id, 'polygon-' + layer_id, polygonLayer);
     } else {
 
         md_update_layer(map_id, 'polygon-' + layer_id, polygonLayer);
     }
-
-    console.log(JSON.stringify(polygonLayer));
 
     if (legend !== false) {
         md_add_legend(map_id, map_type, layer_id, legend);

@@ -8,9 +8,6 @@ function getCharacterSet() {
 
 function add_text_geo(map_id, map_type, text_data, layer_id, auto_highlight, highlight_colour, legend, bbox, update_view, focus_layer, js_transition, billboard, font_family, font_weight, brush_radius, max_width) {
 
-    console.log('geo');
-    console.log(max_width);
-
     var extensions = [];
 
     if (brush_radius > 0) {
@@ -21,7 +18,7 @@ function add_text_geo(map_id, map_type, text_data, layer_id, auto_highlight, hig
         map_id: map_id,
         id: 'text-' + layer_id,
         data: text_data,
-        pickable: true,
+        pickable: false,
         parameters: {
             depthTest: false
         },
@@ -53,7 +50,6 @@ function add_text_geo(map_id, map_type, text_data, layer_id, auto_highlight, hig
     if (map_type == "google_map") {
         md_update_overlay(map_id, 'text-' + layer_id, textLayer);
     } else {
-
         md_update_layer(map_id, 'text-' + layer_id, textLayer);
     }
 
@@ -77,7 +73,7 @@ function add_text_polyline(map_id, map_type, text_data, layer_id, auto_highlight
         map_id: map_id,
         id: 'text-' + layer_id,
         data: text_data,
-        pickable: true,
+        pickable: false,
         parameters: {
             depthTest: false
         },

@@ -22,7 +22,7 @@ legend, bbox, update_view, focus_layer, js_transition, billboard ) {
     onClick: info => md_layer_click( map_id, "path", info ),
     onHover: md_update_tooltip,
     autoHighlight: auto_highlight,
-    highlightColor: md_hexToRGBA( highlight_colour ),
+    highlightColor: md_hexToRGBA(highlight_colour),
     transitions: js_transition || {}
   });
 
@@ -59,7 +59,7 @@ function add_path_polyline( map_id, map_type, path_data, layer_id, auto_highligh
     onClick: info => md_layer_click( map_id, "path", info ),
     onHover: md_update_tooltip,
     autoHighlight: auto_highlight,
-    highlightColor: md_hexToRGBA( highlight_colour ),
+    highlightColor: md_hexToRGBA(highlight_colour),
     transitions: js_transition || {}
   });
 

@@ -26,7 +26,7 @@ function add_hexagon_geo( map_id, map_type, hexagon_data, layer_id, radius, elev
     getElevationWeight: d => d.properties.elevation || 1,
     elevationAggregation: elevation_function,
 
-    highlightColor: md_hexToRGBA( highlight_colour ),
+    highlightColor: md_hexToRGBA(highlight_colour),
     onClick: info => md_layer_click( map_id, "hexagon", info ),
     autoHighlight: auto_highlight,
     transitions: js_transition || {},
@@ -73,7 +73,7 @@ function add_hexagon_polyline( map_id, map_type, hexagon_data, layer_id, radius,
     getElevationWeight: d => d.elevation || 1,
     elevationAggregation: elevation_function,
 
-    highlightColor: md_hexToRGBA( highlight_colour ),
+    highlightColor: md_hexToRGBA(highlight_colour),
     onClick: info => md_layer_click( map_id, "hexagon", info ),
     autoHighlight: auto_highlight,
     transitions: js_transition || {},

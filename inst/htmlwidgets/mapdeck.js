@@ -82,7 +82,13 @@ HTMLWidgets.widget({
                             };
                             viewState.interactionState = interactionState;
 
+                            console.log(viewState);
+
                             Shiny.onInputChange(el.id + '_view_change', viewState);
+
+                            if (viewState.interactionState.isZooming != null && viewState.interactionState.isZooming) {
+                                Shiny.onInputChange(el.id + '_zoom', viewState.zoom);
+                            }
                         },
                         onDragStart(info, event) {
                             if (!HTMLWidgets.shinyMode) {
