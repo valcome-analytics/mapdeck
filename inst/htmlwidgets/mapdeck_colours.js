@@ -1,7 +1,5 @@
 function md_hexToRGBA( hex ) {
 
-	//console.log( hex );
-
     let parseString = hex;
     if (hex.startsWith('#')) { parseString = hex.slice(1, 9); }
 
@@ -17,7 +15,6 @@ function md_hexToRGBA( hex ) {
     const b = parseInt(parseString.slice(4, 6), 16);
     const a = parseInt(parseString.slice(6, 8), 16);
     if (isNaN(r) || isNaN(g) || isNaN(b)) {return null;}
-    console.log([r, g, b, a]);
     return [r, g, b, a];
     //return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
