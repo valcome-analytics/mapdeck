@@ -148,6 +148,7 @@ add_polygon <- function(
 	l[["tooltip"]] <- force( tooltip )
 	l[["id"]] <- force( id )
 	l[["na_colour"]] <- force( na_colour )
+	l[["highlight_colour"]] <- force( highlight_colour )
 
 	l <- resolve_palette( l, palette )
 	l <- resolve_legend( l, legend )
