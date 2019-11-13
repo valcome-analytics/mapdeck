@@ -62,8 +62,9 @@ HTMLWidgets.widget({
 			      layers: [],
 			      //controller: myController
 			      //onLayerHover: setTooltip
-			      onViewStateChange: ({viewState}) => {
+			      onViewStateChange: ({viewState, interactionState}) => {
 
+			      	if (!HTMLWidgets.shinyMode) { return; }
 							// as per:
 							// https://github.com/uber/deck.gl/issues/3344
 							// https://github.com/SymbolixAU/mapdeck/issues/211
@@ -77,12 +78,27 @@ HTMLWidgets.widget({
   							south: se[1],
   							west:  nw[0]
   						};
+  						viewState.interactionState = interactionState;
 
-			      	if (!HTMLWidgets.shinyMode) {
-						    return;
-						  }
 						  Shiny.onInputChange(el.id + '_view_change', viewState);
+			      },
+			      onDragStart(info, event){
+			      	if (!HTMLWidgets.shinyMode) { return; }
+			      	Shiny.onInputChange(el.id +'_drag_start', info);
+			      },
+			      onDrag(info, event){
+			      	if (!HTMLWidgets.shinyMode) { return; }
+			      	Shiny.onInputChange(el.id +'_drag', info);
+			      },
+			      onDragEnd(info, event){
+			      	if (!HTMLWidgets.shinyMode) { return; }
+			      	Shiny.onInputChange(el.id +'_drag_end', info);
+			      },
+			      onResize(size) {
+			      	if (!HTMLWidgets.shinyMode) { return; }
+			      	Shiny.onInputChange(el.id +'_resize', size);
 			      }
+
 			  });
 
 			  window[el.id + 'map'] = deckgl;
