@@ -1,5 +1,7 @@
 
-function add_text_geo( map_id, map_type, text_data, layer_id, auto_highlight, highlight_colour, legend, bbox, update_view, focus_layer, js_transition, billboard, font_family, font_weight, brush_radius ) {
+function add_text_geo( map_id, map_type, text_data, layer_id, auto_highlight, highlight_colour, legend, bbox, update_view, focus_layer, js_transition, billboard, font_family, font_weight, brush_radius, max_width ) {
+
+    console.log(highlight_colour);
 
   var extensions = [];
 
@@ -34,6 +36,7 @@ function add_text_geo( map_id, map_type, text_data, layer_id, auto_highlight, hi
     onHover: md_update_tooltip,
     transitions: js_transition || {},
     brushingRadius: brush_radius,
+    maxWidth: max_width,
     extensions: extensions
   });
 
@@ -50,7 +53,7 @@ function add_text_geo( map_id, map_type, text_data, layer_id, auto_highlight, hi
 	md_layer_view( map_id, map_type, layer_id, focus_layer, bbox, update_view );
 }
 
-function add_text_polyline( map_id, map_type, text_data, layer_id, auto_highlight, highlight_colour, legend, bbox, update_view, focus_layer, js_transition, billboard, font_family, font_weight, brush_radius ) {
+function add_text_polyline( map_id, map_type, text_data, layer_id, auto_highlight, highlight_colour, legend, bbox, update_view, focus_layer, js_transition, billboard, font_family, font_weight, brush_radius, max_width ) {
 
   var extensions = [];
 
@@ -85,6 +88,7 @@ function add_text_polyline( map_id, map_type, text_data, layer_id, auto_highligh
     onHover: md_update_tooltip,
     transitions: js_transition || {},
     brushingRadius: brush_radius,
+    maxWidth: max_width,
     extensions: extensions
   });
 

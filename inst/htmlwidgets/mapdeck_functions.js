@@ -235,8 +235,3 @@ function md_layer_click( map_id, layer, info ) {
   eventInfo = JSON.stringify( eventInfo );
   Shiny.onInputChange(map_id + "_" + layer + "_click", eventInfo);
 }
-
-
-
-
-

@@ -101,6 +101,7 @@ add_text <- function(
 	highlight_colour = "#AAFFFFFF",
 	palette = "viridis",
 	na_colour = "#808080FF",
+	max_width = -1,
 	legend = FALSE,
 	legend_options = NULL,
 	legend_format = NULL,
@@ -125,6 +126,7 @@ add_text <- function(
 	l[["tooltip"]] <- force(tooltip)
 	l[["id"]] <- force(id)
 	l[["na_colour"]] <- force(na_colour)
+	l[["max_width"]] <- force(max_width)
 
 	l <- resolve_palette( l, palette )
 	l <- resolve_legend( l, legend )
@@ -180,7 +182,7 @@ add_text <- function(
 	invoke_method(
 		map, jsfunc, map_type( map ), shape[["data"]], layer_id, auto_highlight, highlight_colour,
 		shape[["legend"]], bbox, update_view, focus_layer, js_transitions, billboard,
-		font_family, font_weight, brush_radius
+		font_family, font_weight, brush_radius, max_width
 		)
 }
 
