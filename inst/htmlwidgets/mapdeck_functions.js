@@ -59,7 +59,11 @@ function md_div_exists( div_element ) {
 function md_update_tooltip({x, y, object, layer, index}) {
     // object is the data object sent to the layer function
 
-  if( !md_div_exists( 'mapdecktooltip'+layer.props.map_id ) ) {
+    if ( HTMLWidgets.shinyMode ) {
+        Shiny.onInputChange(layer.props.map_id + "_" + layer + "_hover", layer);
+    }
+
+    if( !md_div_exists( 'mapdecktooltip'+layer.props.map_id ) ) {
   	md_setup_tooltip( layer.props.map_id );
   }
 
