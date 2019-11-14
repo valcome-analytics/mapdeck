@@ -1,6 +1,6 @@
-selectedIndex = -1;
-
 function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_settings, auto_highlight, highlight_colour, legend, bbox, update_view, focus_layer, js_transition, is_extruded) {
+
+    globalMapId = map_id;
 
     const polygonLayer = new PolygonLayer({
         map_id: map_id,
@@ -18,12 +18,12 @@ function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_setting
         getLineWidth: d => d.properties.stroke_width,
         getElevation: d => d.properties.elevation,
         updateTriggers: {
-            getFillColor: {selectedIndex}
+            getFillColor: [selectedPolygonIndex, currentZoom]
         },
         lightSettings: light_settings,
         autoHighlight: auto_highlight,
         highlightColor: md_hexToRGBA(highlight_colour),
-        onHover: md_update_tooltip,
+        onHover: md_on_hover,
         onClick: info => md_layer_click(map_id, "polygon", info),
         transitions: js_transition || {}
     });
@@ -39,7 +39,6 @@ function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_setting
     }
     md_layer_view(map_id, map_type, layer_id, focus_layer, bbox, update_view);
 }
-
 
 function add_polygon_polyline(map_id, map_type, polygon_data, layer_id, light_settings, auto_highlight, highlight_colour, legend, bbox, update_view, focus_layer, js_transition, is_extruded) {
 
@@ -61,7 +60,7 @@ function add_polygon_polyline(map_id, map_type, polygon_data, layer_id, light_se
         lightSettings: light_settings,
         autoHighlight: auto_highlight,
         highlightColor: md_hexToRGBA(highlight_colour),
-        onHover: md_update_tooltip,
+        onHover: md_on_hover,
         onClick: info => md_layer_click(map_id, "polygon", info),
         transitions: js_transition || {}
     });

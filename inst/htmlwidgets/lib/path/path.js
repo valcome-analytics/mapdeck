@@ -20,7 +20,7 @@ legend, bbox, update_view, focus_layer, js_transition, billboard ) {
     getWidth: d => d.properties.stroke_width,
     getDashArray: d => [ d.properties.dash_size, d.properties.dash_gap ],
     onClick: info => md_layer_click( map_id, "path", info ),
-    onHover: md_update_tooltip,
+    onHover: md_on_hover,
     autoHighlight: auto_highlight,
     highlightColor: md_hexToRGBA(highlight_colour),
     transitions: js_transition || {}
@@ -57,7 +57,7 @@ function add_path_polyline( map_id, map_type, path_data, layer_id, auto_highligh
     getWidth: d => d.stroke_width,
     getDashArray: d => [ d.dash_size, d.dash_gap ],
     onClick: info => md_layer_click( map_id, "path", info ),
-    onHover: md_update_tooltip,
+    onHover: md_on_hover,
     autoHighlight: auto_highlight,
     highlightColor: md_hexToRGBA(highlight_colour),
     transitions: js_transition || {}

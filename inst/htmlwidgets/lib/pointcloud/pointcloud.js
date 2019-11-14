@@ -20,7 +20,7 @@ function add_pointcloud_geo( map_id, map_type, pointcloud_data, radius, layer_id
     autoHighlight: auto_highlight,
     highlightColor: md_hexToRGBA(highlight_colour),
     onClick: info => md_layer_click( map_id, "pointcloud", info ),
-    onHover: md_update_tooltip,
+    onHover: md_on_hover,
     transitions: js_transition || {},
     brushingRadius: brush_radius,
     extensions: extensions
@@ -58,7 +58,7 @@ function add_pointcloud_polyline( map_id, map_type, pointcloud_data, radius, lay
     autoHighlight: auto_highlight,
     highlightColor: md_hexToRGBA(highlight_colour),
     onClick: info => md_layer_click( map_id, "pointcloud", info ),
-    onHover: md_update_tooltip,
+    onHover: md_on_hover,
     transitions: js_transition || {},
     brushingRadius: brush_radius,
     extensions: extensions

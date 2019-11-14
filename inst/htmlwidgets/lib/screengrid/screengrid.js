@@ -18,7 +18,7 @@ function add_screengrid_geo( map_id, map_type, screengrid_data, layer_id, opacit
     getWeight: d => d.properties.weight,
     aggregation: aggregation,
     onClick: info => md_layer_click( map_id, "screengrid", info ),
-    onHover: md_update_tooltip,
+    onHover: md_on_hover,
     brushingRadius: brush_radius,
     extensions: extensions
   });
@@ -51,7 +51,7 @@ function add_screengrid_polyline( map_id, map_type, screengrid_data, layer_id, o
     getWeight: d => d.weight,
     aggregation: aggregation,
     onClick: info => md_layer_click( map_id, "screengrid", info ),
-    onHover: md_update_tooltip,
+    onHover: md_on_hover,
     brushingRadius: brush_radius,
     extensions: extensions
   });

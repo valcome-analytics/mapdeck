@@ -29,7 +29,7 @@ function add_column_geo( map_id, map_type, column_data, layer_id, auto_highlight
     autoHighlight: auto_highlight,
     highlightColor: md_hexToRGBA(highlight_colour),
     onClick: info => md_layer_click( map_id, "column", info ),
-    onHover: md_update_tooltip,
+    onHover: md_on_hover,
     transitions: js_transition || {},
     brushingRadius: brush_radius,
     extensions: extensions
@@ -78,7 +78,7 @@ function add_column_polyline( map_id, map_type, column_data, layer_id, auto_high
     autoHighlight: auto_highlight,
     highlightColor: md_hexToRGBA(highlight_colour),
     onClick: info => md_layer_click( map_id, "column", info ),
-    onHover: md_update_tooltip,
+    onHover: md_on_hover,
     transitions: js_transition || {},
     brushingRadius: brush_radius,
     extensions: extensions

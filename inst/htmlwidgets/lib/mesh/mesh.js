@@ -53,7 +53,7 @@ function add_mesh( map_id, map_type, polygon_data, layer_id, light_settings, aut
     lightSettings: light_settings,
     autoHighlight: auto_highlight,
     highlightColor: md_hexToRGBA(highlight_colour),
-    onHover: md_update_tooltip,
+    onHover: md_on_hover,
     onClick: info => md_layer_click( map_id, "mesh", info ),
     transitions: js_transition || {}
   });

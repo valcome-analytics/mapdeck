@@ -78,6 +78,7 @@ mapdeck_dependencies <- function() {
 		, mapdeck_dep_location()
 		, mapdeck_dep_colours()
 		, mapdeck_dep_coordinates()
+		, mapdeck_dep_valytics()
 		)
 }
 
@@ -148,6 +149,18 @@ mapdeck_dep_location <- function() {
 			version = "0.0.1",
 			src = system.file("htmlwidgets/", package = "mapdeck"),
 			script = c("mapdeck_location.js"),
+			all_files = FALSE
+		)
+	)
+}
+
+mapdeck_dep_valytics <- function() {
+	list(
+		createHtmlDependency(
+			name = "valytics-utils",
+			version = "0.0.1",
+			src = system.file("htmlwidgets/", package = "mapdeck"),
+			script = c("valytics-utils.js"),
 			all_files = FALSE
 		)
 	)

@@ -87,6 +87,7 @@ HTMLWidgets.widget({
                             Shiny.onInputChange(el.id + '_view_change', viewState);
 
                             if (viewState.interactionState.isZooming != null && viewState.interactionState.isZooming) {
+                                currentZoom = viewState.zoom;
                                 Shiny.onInputChange(el.id + '_zoom', viewState.zoom);
                             }
                         },

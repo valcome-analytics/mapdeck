@@ -30,7 +30,7 @@ function add_scatterplot_geo( map_id, map_type, scatter_data, layer_id, auto_hig
     autoHighlight: auto_highlight,
     highlightColor: md_hexToRGBA(highlight_colour),
     onClick: info => md_layer_click( map_id, "scatterplot", info ),
-    onHover: md_update_tooltip,
+    onHover: md_on_hover,
     transitions: js_transition || {},
     brushingRadius: brush_radius,
     extensions: extensions
@@ -78,7 +78,7 @@ function add_scatterplot_polyline( map_id, map_type, scatter_data, layer_id, aut
     autoHighlight: auto_highlight,
     highlightColor: md_hexToRGBA(highlight_colour),
     onClick: info => md_layer_click( map_id, "scatterplot", info ),
-    onHover: md_update_tooltip,
+    onHover: md_on_hover,
     transitions: js_transition || {},
     brushingRadius: brush_radius,
     extensions: extensions

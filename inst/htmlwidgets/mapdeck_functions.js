@@ -54,15 +54,11 @@ function md_div_exists( div_element ) {
 
 // following: https://codepen.io/vis-gl/pen/pLLQpN
 // and: https://beta.observablehq.com/@pessimistress/deck-gl-geojsonlayer-example
-function md_update_tooltip({x, y, object, layer, index}) {
+function md_on_hover({x, y, object, layer, index}) {
     // object is the data object sent to the layer function
 
     if ( HTMLWidgets.shinyMode ) {
-        selectedIndex = index;
-        if (object !== undefined) {
-            console.log(object.properties.selected);
-            object.properties.selected = true;
-        }
+        selectedPolygonIndex = index;
         let layerId = layer.id;
         layerId = layerId.replace('-', '_');
         Shiny.onInputChange(layer.props.map_id + "_" + layerId + "_hover", index);

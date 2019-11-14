@@ -21,8 +21,14 @@ function md_hexToRGBA(hex, object) {
     }
 
     if (object != null) {
-        if (object.index === selectedIndex) {
-            return [r, g, b, 0];
+        if (object.index === selectedPolygonIndex) {
+            let zoom = getZoomLevelFromMap();
+
+            if (zoom < 12) {
+                return [r, g, b, 90];
+            } else {
+                return [r, g, b, 0];
+            }
         }
     }
 

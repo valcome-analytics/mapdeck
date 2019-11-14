@@ -14,7 +14,7 @@ function add_line_geo( map_id, map_type, line_data, layer_id, auto_highlight, hi
     getTargetPosition: d => md_get_destination_coordinates( d ),
     getColor: d => md_hexToRGBA( d.properties.stroke_colour ),
     onClick: info => md_layer_click( map_id, "line", info ),
-    onHover: md_update_tooltip,
+    onHover: md_on_hover,
     autoHighlight: auto_highlight,
     highlightColor: md_hexToRGBA(highlight_colour),
     transitions: js_transition || {}
@@ -48,7 +48,7 @@ function add_line_polyline( map_id, map_type, line_data, layer_id, auto_highligh
     getTargetPosition: d => md_decode_points( d.destination ),
     getColor: d => md_hexToRGBA( d.stroke_colour ),
     onClick: info => md_layer_click( map_id, "line", info ),
-    onHover: md_update_tooltip,
+    onHover: md_on_hover,
     autoHighlight: auto_highlight,
     highlightColor: md_hexToRGBA(highlight_colour),
     transitions: js_transition || {}
