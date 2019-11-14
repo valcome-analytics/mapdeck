@@ -131,6 +131,8 @@ add_polygon <- function(
 	legend_format = NULL,
 	update_view = TRUE,
 	focus_layer = FALSE,
+	line_width_min_pixels = 0,
+	line_width_max_pixels = 100000,
 	digits = 6,
 	transitions = NULL
 ) {
@@ -149,6 +151,8 @@ add_polygon <- function(
 	l[["id"]] <- force( id )
 	l[["na_colour"]] <- force( na_colour )
 	l[["highlight_colour"]] <- force( highlight_colour )
+	l[["line_width_min_pixels"]] <- force( line_width_min_pixels )
+	l[["line_width_max_pixels"]] <- force( line_width_max_pixels )
 
 	l <- resolve_palette( l, palette )
 	l <- resolve_legend( l, legend )
@@ -216,10 +220,9 @@ add_polygon <- function(
 	invoke_method(
 		map, jsfunc, map_type( map ), shape[["data"]], layer_id, light_settings,
 		auto_highlight, highlight_colour, shape[["legend"]], bbox, update_view, focus_layer,
-		js_transitions, is_extruded
+		js_transitions, is_extruded, line_width_min_pixels, line_width_max_pixels
 		)
 }
-
 
 
 #' @rdname clear

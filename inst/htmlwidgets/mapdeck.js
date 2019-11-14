@@ -151,14 +151,13 @@ if (HTMLWidgets.shinyMode) {
 
         console.log("mapdeckmap-calls");
 
-        var id = data.id,   // the div id of the map
-            el = document.getElementById(id),
-            map = el,
-            call = [],
-            i = 0;
+        var id = data.id;   // the div id of the map
+        var el = document.getElementById(id);
+        var map = el;
+        var call = [];
+        var i = 0;
 
         if (!map) {
-            //console.log("Couldn't find map with id " + id);
             return;
         }
 
@@ -181,4 +180,3 @@ if (HTMLWidgets.shinyMode) {
         }
     });
 }
-

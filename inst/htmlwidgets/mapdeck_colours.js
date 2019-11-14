@@ -23,6 +23,7 @@ function md_hexToRGBA(hex, object) {
     if (object != null) {
         if (object.index === selectedPolygonIndex) {
             let zoom = getZoomLevelFromMap();
+            console.log(zoom);
 
             if (zoom < 12) {
                 return [r, g, b, 90];

@@ -92,6 +92,8 @@ add_path <- function(
 	legend_format = NULL,
 	update_view = TRUE,
 	focus_layer = FALSE,
+	width_min_pixels,
+	width_max_pixels,
 	digits = 6,
 	transitions = NULL
 ) {
@@ -106,6 +108,8 @@ add_path <- function(
 	l[["tooltip"]] <- force(tooltip)
 	l[["id"]] <- force(id)
 	l[["na_colour"]] <- force(na_colour)
+	l[["width_min_pixels"]] <- force(width_min_pixels)
+	l[["width_max_pixels"]] <- force(width_max_pixels)
 
 	l <- resolve_palette( l, palette )
 	l <- resolve_legend( l, legend )
@@ -154,8 +158,8 @@ add_path <- function(
 	invoke_method(
 		map, jsfunc, map_type( map ), shape[["data"]], layer_id, auto_highlight,
 		highlight_colour, shape[["legend"]], bbox, update_view, focus_layer,
-		js_transitions, billboard
-		)
+		js_transitions, billboard, width_min_pixels, width_max_pixels
+	)
 }
 
 

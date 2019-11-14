@@ -1,4 +1,6 @@
-function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_settings, auto_highlight, highlight_colour, legend, bbox, update_view, focus_layer, js_transition, is_extruded) {
+function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_settings, auto_highlight, highlight_colour,
+                         legend, bbox, update_view, focus_layer, js_transition, is_extruded,
+                         line_width_min_pixels, line_width_max_pixels) {
 
     globalMapId = map_id;
 
@@ -11,7 +13,8 @@ function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_setting
         filled: true,
         wireframe: false,
         extruded: is_extruded,
-        lineWidthMinPixels: 0,
+        lineWidthMinPixels: line_width_min_pixels,
+        lineWidthMaxPixels: line_width_max_pixels,
         getPolygon: d => md_get_polygon_coordinates(d),
         getLineColor: d => md_hexToRGBA(d.properties.stroke_colour),
         getFillColor: (d, o) => md_hexToRGBA(d.properties.fill_colour, o),
@@ -40,7 +43,9 @@ function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_setting
     md_layer_view(map_id, map_type, layer_id, focus_layer, bbox, update_view);
 }
 
-function add_polygon_polyline(map_id, map_type, polygon_data, layer_id, light_settings, auto_highlight, highlight_colour, legend, bbox, update_view, focus_layer, js_transition, is_extruded) {
+function add_polygon_polyline(map_id, map_type, polygon_data, layer_id, light_settings, auto_highlight, highlight_colour,
+                              legend, bbox, update_view, focus_layer, js_transition, is_extruded,
+                              line_width_min_pixels, line_width_max_pixels) {
 
     const polygonLayer = new PolygonLayer({
         map_id: map_id,
@@ -51,7 +56,8 @@ function add_polygon_polyline(map_id, map_type, polygon_data, layer_id, light_se
         filled: true,
         wireframe: false,
         extruded: is_extruded,
-        lineWidthMinPixels: 0,
+        lineWidthMinPixels: line_width_min_pixels,
+        lineWidthMaxPixels: line_width_max_pixels,
         getPolygon: d => decode_polygons(d.polyline),
         getLineColor: d => md_hexToRGBA(d.stroke_colour),
         getFillColor: d => md_hexToRGBA(d.fill_colour),
