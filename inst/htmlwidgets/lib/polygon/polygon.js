@@ -1,6 +1,6 @@
-function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_settings, auto_highlight, highlight_colour, legend, bbox, update_view, focus_layer, js_transition, is_extruded) {
+selectedIndex = -1;
 
-    console.log(md_hexToRGBA(highlight_colour));
+function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_settings, auto_highlight, highlight_colour, legend, bbox, update_view, focus_layer, js_transition, is_extruded) {
 
     const polygonLayer = new PolygonLayer({
         map_id: map_id,
@@ -14,9 +14,12 @@ function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_setting
         lineWidthMinPixels: 0,
         getPolygon: d => md_get_polygon_coordinates(d),
         getLineColor: d => md_hexToRGBA(d.properties.stroke_colour),
-        getFillColor: d => md_hexToRGBA(d.properties.fill_colour),
+        getFillColor: (d, o) => md_hexToRGBA(d.properties.fill_colour, o),
         getLineWidth: d => d.properties.stroke_width,
         getElevation: d => d.properties.elevation,
+        updateTriggers: {
+            getFillColor: {selectedIndex}
+        },
         lightSettings: light_settings,
         autoHighlight: auto_highlight,
         highlightColor: md_hexToRGBA(highlight_colour),
@@ -28,7 +31,6 @@ function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_setting
     if (map_type == "google_map") {
         md_update_overlay(map_id, 'polygon-' + layer_id, polygonLayer);
     } else {
-
         md_update_layer(map_id, 'polygon-' + layer_id, polygonLayer);
     }
 
