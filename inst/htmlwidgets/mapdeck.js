@@ -82,8 +82,6 @@ HTMLWidgets.widget({
                             };
                             viewState.interactionState = interactionState;
 
-                            console.log(viewState);
-
                             Shiny.onInputChange(el.id + '_view_change', viewState);
 
                             if (viewState.interactionState.isZooming != null && viewState.interactionState.isZooming) {
@@ -114,18 +112,6 @@ HTMLWidgets.widget({
                                 return;
                             }
                             // Shiny.onInputChange(el.id +'_resize', size);
-                        },
-                        onZoom() {
-                            if (!HTMLWidgets.shinyMode) {
-                                return;
-                            }
-                            console.log('yeah');
-                        },
-                        onZoomEnd() {
-                            if (!HTMLWidgets.shinyMode) {
-                                return;
-                            }
-                            console.log('yeah end');
                         }
 
                     });

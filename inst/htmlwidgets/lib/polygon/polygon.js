@@ -26,7 +26,7 @@ function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_setting
         lightSettings: light_settings,
         autoHighlight: auto_highlight,
         highlightColor: md_hexToRGBA(highlight_colour),
-        onHover: md_on_hover,
+        onHover: (info, event) => md_on_hover(info, event),
         onClick: info => md_layer_click(map_id, "polygon", info),
         transitions: js_transition || {}
     });

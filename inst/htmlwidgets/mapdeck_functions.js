@@ -54,14 +54,26 @@ function md_div_exists( div_element ) {
 
 // following: https://codepen.io/vis-gl/pen/pLLQpN
 // and: https://beta.observablehq.com/@pessimistress/deck-gl-geojsonlayer-example
-function md_on_hover({x, y, object, layer, index}) {
+function md_on_hover({x, y, object, layer, index}, event) {
     // object is the data object sent to the layer function
 
     if ( HTMLWidgets.shinyMode ) {
-        selectedPolygonIndex = index;
+
         let layerId = layer.id;
         layerId = layerId.replace('-', '_');
-        Shiny.onInputChange(layer.props.map_id + "_" + layerId + "_hover", index);
+
+        if (layerId.indexOf("buildings") !== -1) {
+            console.log('==== building ===');
+            console.log(index);
+            console.log(event);
+            event.stopPropagation()
+        }
+        if (layerId.indexOf("communities") !== -1) {
+            console.log('==== community ===');
+            console.log(index);
+            selectedPolygonIndex = index;
+            Shiny.onInputChange(layer.props.map_id + "_" + layerId + "_hover", index);
+        }
     }
 
     if( !md_div_exists( 'mapdecktooltip'+layer.props.map_id ) ) {
