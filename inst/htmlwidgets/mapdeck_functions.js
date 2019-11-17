@@ -1,5 +1,7 @@
 function md_setup_window(map_id) {
 
+    globalMapId = map_id;
+
     md_setup_window_objects(map_id);
     md_setup_mapdeck_div(map_id);
 

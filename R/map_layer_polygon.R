@@ -134,10 +134,9 @@ add_polygon <- function(
 	line_width_min_pixels = 0,
 	line_width_max_pixels = 100000,
 	digits = 6,
-	transitions = NULL
+	transitions = NULL,
+	js_function_prefix = "add_polygon"
 ) {
-
-	#if( is.null( stroke_colour )) stroke_colour <- fill_colour
 
 	l <- list()
 	l[["polyline"]] <- force( polyline )
@@ -193,7 +192,7 @@ add_polygon <- function(
 	tp <- l[["data_type"]]
 	l[["data_type"]] <- NULL
 
-	jsfunc <- "add_polygon_geo"
+	jsfunc <- paste(js_function_prefix, "geo", sep="_")
 
 	if ( tp == "sf" ) {
 		geometry_column <- c( "geometry" ) ## This is where we woudl also specify 'origin' or 'destination'
@@ -201,7 +200,7 @@ add_polygon <- function(
 	} else if ( tp == "sfencoded" ) {
 		geometry_column <- "polyline"
 		shape <- rcpp_polygon_polyline( data, l, geometry_column )
-		jsfunc <- "add_polygon_polyline"
+		jsfunc <- paste(js_function_prefix, "polyline", sep="_")
 	# } else if ( tp == "mesh" ) {
 	# 	geometry_column <- "geometry"
 	# 	jsfunc <- "add_mesh"
@@ -231,5 +230,3 @@ clear_polygon <- function( map, layer_id = NULL) {
 	layer_id <- layerId(layer_id, "polygon")
 	invoke_method(map, "md_layer_clear", map_type( map ), layer_id, "polygon" )
 }
-
-
