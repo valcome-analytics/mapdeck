@@ -17,18 +17,25 @@ function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_setting
         lineWidthMaxPixels: line_width_max_pixels,
         getPolygon: d => md_get_polygon_coordinates(d),
         getLineColor: d => md_hexToRGBA(d.properties.stroke_colour),
-        getFillColor: (d, o) => md_hexToRGBA(d.properties.fill_colour, o),
+        getFillColor: (d, o) => getCommunityColor(d.properties.fill_colour, o),
         getLineWidth: d => d.properties.stroke_width,
         getElevation: d => d.properties.elevation,
         updateTriggers: {
-            getFillColor: [selectedPolygonIndex, currentZoom]
+            getFillColor: [selectedCommunityIndex, currentZoom]
         },
         lightSettings: light_settings,
         autoHighlight: auto_highlight,
         highlightColor: md_hexToRGBA(highlight_colour),
         onHover: (info, event) => md_on_hover(info, event),
         onClick: info => md_layer_click(map_id, "polygon", info),
-        transitions: js_transition || {}
+        // transitions: js_transition || {}
+        transitions: {
+            getFillColor: 200,
+            getElevation: {
+                duration: 1000,
+                enter: value => [0]
+            }
+        }
     });
 
     if (map_type == "google_map") {

@@ -1,4 +1,4 @@
-function md_hexToRGBA(hex, object) {
+function md_hexToRGBA(hex) {
 
     let parseString = hex;
     if (hex.startsWith('#')) {
@@ -18,19 +18,6 @@ function md_hexToRGBA(hex, object) {
     const a = parseInt(parseString.slice(6, 8), 16);
     if (isNaN(r) || isNaN(g) || isNaN(b)) {
         return null;
-    }
-
-    if (object != null) {
-        if (object.index === selectedPolygonIndex) {
-            let zoom = getZoomLevelFromMap();
-            console.log(zoom);
-
-            if (zoom < 12) {
-                return [r, g, b, 90];
-            } else {
-                return [r, g, b, 0];
-            }
-        }
     }
 
     return [r, g, b, a];

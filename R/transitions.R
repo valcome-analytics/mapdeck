@@ -115,5 +115,3 @@ transitions_text <- function( transitions ) {
 	transitions <- replace_name( transitions, "fill_colour", "getColor" )
 	transitions <- replace_name( transitions, "angle", "getAngle" )
 }
-
-
