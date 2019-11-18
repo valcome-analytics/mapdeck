@@ -41,8 +41,9 @@ function add_path_polyline( map_id, map_type, path_data, layer_id, auto_highligh
 
 function getBasePath(map_id, map_type, path_data, layer_id, auto_highlight, highlight_colour,
                      legend, bbox, update_view, focus_layer, js_transition, billboard,
-                     width_min_pixels, width_max_pixels) {
-    return new PathLayer({
+                     width_min_pixels, width_max_pixels, additions = {}) {
+
+    let pathLayer = {
         map_id: map_id,
         id: 'path-'+layer_id,
         data: path_data,
@@ -64,7 +65,9 @@ function getBasePath(map_id, map_type, path_data, layer_id, auto_highlight, high
         autoHighlight: auto_highlight,
         highlightColor: md_hexToRGBA(highlight_colour),
         transitions: js_transition || {}
-    });
+    };
+
+    return new PathLayer({...pathLayer, ...additions});
 }
 
 function addBasePathToMap(map_id, layer_id, pathLayer, map_type, legend, focus_layer, bbox, update_view) {
