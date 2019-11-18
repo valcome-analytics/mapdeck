@@ -34,9 +34,3 @@ function getCommunityColor(hex, object) {
 
     return color;
 }
-
-function getBuildingColor(hex) {
-    let color = md_hexToRGBA(hex);
-    console.log(selectedCommunityIndex);
-    return color;
-}

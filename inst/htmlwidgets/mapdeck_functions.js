@@ -158,7 +158,6 @@ function md_layer_clear(map_id, map_type, layer_id, layer) {
     md_clear_legend(map_id, map_type, layer_id);
 }
 
-
 function md_update_layer(map_id, layer_id, layer) {
 
     var elem = md_findObjectElementByKey(window[map_id + 'map'].props.layers, 'id', layer_id);
@@ -167,6 +166,9 @@ function md_update_layer(map_id, layer_id, layer) {
     } else {
         window[map_id + 'layers'].push(layer);
     }
+
+    console.log(window[map_id + 'layers']);
+
 
     // ## issue 137
     var vs = window[map_id + 'map'].viewState;
