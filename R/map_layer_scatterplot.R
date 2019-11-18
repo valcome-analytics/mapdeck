@@ -142,7 +142,8 @@ add_scatterplot <- function(
 	update_view = TRUE,
 	focus_layer = FALSE,
 	transitions = NULL,
-	brush_radius = NULL
+	brush_radius = NULL,
+	js_function_prefix = "add_scatterplot"
 ) {
 
 	l <- list()
@@ -186,13 +187,8 @@ add_scatterplot <- function(
 	tp <- l[["data_type"]]
 	l[["data_type"]] <- NULL
 
-	# if(!is.null(brush_radius)) {
-	# 	jsfunc <- "add_scatterplot_brush_geo"
-	# 	map <- addDependency(map, mapdeckScatterplotBrushDependency())
-	# } else {
-		jsfunc <- "add_scatterplot_geo"
-		map <- addDependency(map, mapdeckScatterplotDependency())
-	# }
+	jsfunc <- paste(js_function_prefix, "geo", sep="_")
+	map <- addDependency(map, mapdeckScatterplotDependency())
 
 	if ( tp == "sf" ) {
 		geometry_column <- c( "geometry" )
@@ -203,6 +199,7 @@ add_scatterplot <- function(
 	} else if ( tp == "sfencoded" ) {
 		geometry_column <- c( "polyline" )
 		shape <- rcpp_scatterplot_polyline( data, l, geometry_column )
+		jsfunc <- paste(js_function_prefix, "polyline", sep="_")
 		# if(!is.null(brush_radius)) {
 		# 	jsfunc <- "add_scatterplot_brush_polyline"
 		# } else {
