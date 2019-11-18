@@ -6,6 +6,7 @@ function add_polygon_building_geo(map_id, map_type, polygon_data, layer_id, ligh
         updateTriggers: {
             getFillColor: [selectedCommunityIndex]
         },
+        pickable: false,
         transitions: {
             getFillColor: {
                 duration: 200,
@@ -33,6 +34,7 @@ function add_scatterplot_building_geo(map_id, map_type, scatter_data, layer_id, 
         updateTriggers: {
             getFillColor: [selectedCommunityIndex]
         },
+        pickable: false,
         transitions: {
             getFillColor: {
                 duration: 200,
