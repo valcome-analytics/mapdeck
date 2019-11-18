@@ -135,7 +135,7 @@ if (HTMLWidgets.shinyMode) {
 
     Shiny.addCustomMessageHandler("mapdeckmap-calls", function (data) {
 
-        console.log("mapdeckmap-calls");
+        console.log("mapdeck sync (impacts performance if called constant)");
 
         var id = data.id;   // the div id of the map
         var el = document.getElementById(id);

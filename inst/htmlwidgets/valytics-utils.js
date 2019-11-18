@@ -1,6 +1,5 @@
 selectedCommunityIndex = -1;
 currentZoom = -1;
-buildingOpacity = 0;
 
 globalMapId = '';
 
@@ -22,7 +21,6 @@ function getZoomLevelFromMap() {
 function getCommunityColor(hex, object) {
     color = md_hexToRGBA(hex);
     if (object.index === selectedCommunityIndex) {
-        console.log('TRUE');
         let zoom = getZoomLevelFromMap();
 
         if (zoom < 11) {
@@ -38,7 +36,7 @@ function getCommunityColor(hex, object) {
 }
 
 function getBuildingColor(hex) {
-    color = md_hexToRGBA(hex);
+    let color = md_hexToRGBA(hex);
     console.log(selectedCommunityIndex);
     return color;
 }

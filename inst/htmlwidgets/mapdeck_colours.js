@@ -16,6 +16,7 @@ function md_hexToRGBA(hex) {
     const g = parseInt(parseString.slice(2, 4), 16);
     const b = parseInt(parseString.slice(4, 6), 16);
     const a = parseInt(parseString.slice(6, 8), 16);
+
     if (isNaN(r) || isNaN(g) || isNaN(b)) {
         return null;
     }

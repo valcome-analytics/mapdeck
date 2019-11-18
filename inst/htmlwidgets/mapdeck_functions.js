@@ -71,7 +71,6 @@ function md_on_hover({x, y, object, layer, index}, event) {
             event.stopPropagation()
         }
         if (layerId.indexOf("communities") !== -1 && selectedCommunityIndex !== index) {
-            console.log("OPACITY 0");
             selectedCommunityIndex = index;
             buildingOpacity = 0;
             Shiny.onInputChange(layer.props.map_id + "_" + layerId + "_hover", index);
