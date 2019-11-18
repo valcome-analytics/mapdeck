@@ -60,8 +60,8 @@ function decode_polygons(polylines) {
 
 function getBasePolygon(map_id, map_type, polygon_data, layer_id, light_settings, auto_highlight, highlight_colour,
                         legend, bbox, update_view, focus_layer, js_transition, is_extruded,
-                        line_width_min_pixels, line_width_max_pixels) {
-    return new PolygonLayer({
+                        line_width_min_pixels, line_width_max_pixels, additions = {}) {
+    let polygonLayer = {
         map_id: map_id,
         id: 'polygon-' + layer_id,
         data: polygon_data,
@@ -77,16 +77,15 @@ function getBasePolygon(map_id, map_type, polygon_data, layer_id, light_settings
         getFillColor: (d, o) => md_hexToRGBA(d.properties.fill_colour, o),
         getLineWidth: d => d.properties.stroke_width,
         getElevation: d => d.properties.elevation,
-        updateTriggers: {
-            getFillColor: [selectedCommunityIndex, currentZoom]
-        },
         lightSettings: light_settings,
         autoHighlight: auto_highlight,
         highlightColor: md_hexToRGBA(highlight_colour),
         onHover: (info, event) => md_on_hover(info, event),
         onClick: info => md_layer_click(map_id, "polygon", info),
         transitions: js_transition || {}
-    });
+    };
+
+    return new PolygonLayer({...polygonLayer, ...additions});
 }
 
 function addBasePolygonToMap(map_id, layer_id, polygonLayer, map_type, legend, focus_layer, bbox, update_view) {

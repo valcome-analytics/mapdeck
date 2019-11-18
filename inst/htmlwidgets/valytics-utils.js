@@ -19,10 +19,10 @@ function getZoomLevelFromMap() {
     }
 }
 
-
 function getCommunityColor(hex, object) {
     color = md_hexToRGBA(hex);
     if (object.index === selectedCommunityIndex) {
+        console.log('TRUE');
         let zoom = getZoomLevelFromMap();
 
         if (zoom < 11) {
