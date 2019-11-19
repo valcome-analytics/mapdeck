@@ -223,7 +223,6 @@ add_polygon <- function(
 		)
 }
 
-
 #' @rdname clear
 #' @export
 clear_polygon <- function( map, layer_id = NULL) {

@@ -1,5 +1,6 @@
 selectedCommunityIndex = -1;
 currentZoom = -1;
+buildingVisible = true;
 
 globalMapId = '';
 

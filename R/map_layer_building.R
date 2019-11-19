@@ -138,3 +138,10 @@ js_function_prefix = "add_scatterplot"
         "add_scatterplot_building"
     )
 }
+
+hide_building <- function( map, layer_id = NULL) {
+    layer_id_pol <- layerId(layer_id, "polygon")
+    layer_id_scat <- layerId(layer_id, "scatterplot")
+    invoke_method(map, "md_hide_layer", map_type( map ), layer_id_pol, "polygon" )
+    invoke_method(map, "md_hide_layer", map_type( map ), layer_id_scat, "scatterplot" )
+}

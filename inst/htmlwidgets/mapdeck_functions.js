@@ -169,7 +169,6 @@ function md_update_layer(map_id, layer_id, layer) {
 
     console.log(window[map_id + 'layers']);
 
-
     // ## issue 137
     var vs = window[map_id + 'map'].viewState;
 
@@ -248,4 +247,22 @@ function md_layer_click(map_id, layer, info) {
 
     eventInfo = JSON.stringify(eventInfo);
     Shiny.onInputChange(map_id + "_" + layer + "_click", eventInfo);
+}
+
+function md_hide_layer(map_id, layer_id) {
+
+    let index = md_findObjectElementByKey(window[map_id + 'map'].props.layers, 'id', layer_id);
+    console.log(index);
+
+    if (index !== -1) {
+        let layer = window[map_id + 'layers'][index];
+        console.log(layer);
+    }
+
+    // ## issue 137
+    var vs = window[map_id + 'map'].viewState;
+    window[map_id + 'map'].setProps({
+        layers: [...window[map_id + 'layers']],
+        viewState: vs
+    });
 }
