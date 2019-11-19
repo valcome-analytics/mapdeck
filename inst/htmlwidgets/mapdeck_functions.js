@@ -167,8 +167,6 @@ function md_update_layer(map_id, layer_id, layer) {
         window[map_id + 'layers'].push(layer);
     }
 
-    console.log(window[map_id + 'layers']);
-
     // ## issue 137
     var vs = window[map_id + 'map'].viewState;
 
@@ -250,6 +248,8 @@ function md_layer_click(map_id, layer, info) {
 }
 
 function md_hide_layer(map_id, layer_id) {
+
+    console.log(layer_id);
 
     let index = md_findObjectElementByKey(window[map_id + 'map'].props.layers, 'id', layer_id);
     console.log(index);
