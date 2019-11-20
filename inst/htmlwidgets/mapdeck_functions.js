@@ -12,9 +12,9 @@ function md_setup_window(map_id) {
 
 function md_setup_window_objects(map_id) {
     window[map_id + 'layers'] = []; // keep track of layers for overlaying multiple
-    window[map_id + 'legendPositions'] = [];     // array for keeping a referene to legend positions
+    window[map_id + 'legendPositions'] = []; // array for keeping a referene to legend positions
     window[map_id + 'mapTitlePositions'] = [];
-    window[map_id + 'mapdeckBounds'] = [];       // store the bounding box of each layer
+    window[map_id + 'mapdeckBounds'] = []; // store the bounding box of each layer
     window[map_id + 'globalBox'] = [];
     window[map_id + 'currentZoomLevel'] = 0;
 }
@@ -56,24 +56,40 @@ function md_div_exists(div_element) {
 
 // following: https://codepen.io/vis-gl/pen/pLLQpN
 // and: https://beta.observablehq.com/@pessimistress/deck-gl-geojsonlayer-example
-function md_on_hover({x, y, object, layer, index}, event) {
+function md_on_hover({
+    x,
+    y,
+    object,
+    layer,
+    index
+}, event) {
     // object is the data object sent to the layer function
 
     if (HTMLWidgets.shinyMode) {
-
         let layerId = layer.id;
+        let mapId = layer.props.map_id;
         layerId = layerId.replace('-', '_');
+        buildingsLayerIdPrefix = "buildings";
 
-        if (layerId.indexOf("buildings") !== -1) {
-            // console.log('==== building ===');
-            // console.log(index);
-            // console.log(event);
-            event.stopPropagation()
+        if (layerId.indexOf(buildingsLayerIdPrefix) !== -1) {
+            selectedBuildingIndex = index;
+            //Shiny.onInputChange(mapId + "_" + buildingsLayerIdPrefix + "_hover", index);
+            //event.stopPropagation();
+
+            Shiny.onInputChange("map_element_hover", {
+                index: index,
+                type: "BUILDING"
+            });
         }
         if (layerId.indexOf("communities") !== -1 && selectedCommunityIndex !== index) {
             selectedCommunityIndex = index;
-            Shiny.onInputChange(layer.props.map_id + "_" + layerId + "_hover", index);
-            Shiny.onInputChange("map_redraw_building", {});
+            //Shiny.onInputChange(mapId + "_" + layerId + "_hover", index);
+            //Shiny.onInputChange("map_redraw_building", {});
+
+            Shiny.onInputChange("map_element_hover", {
+                index: index,
+                type: "COMMUNITY"
+            });
         }
     }
 
@@ -209,7 +225,9 @@ function md_update_overlay(map_id, layer_id, layer) {
         window[map_id + 'layers'].push(layer);
     }
 
-    window[map_id + 'GoogleMapsOverlay'].setProps({layers: [...window[map_id + 'layers']]});
+    window[map_id + 'GoogleMapsOverlay'].setProps({
+        layers: [...window[map_id + 'layers']]
+    });
     const overlay = window[map_id + 'GoogleMapsOverlay'];
     overlay.setMap(window[map_id + 'map']);
 }
@@ -220,7 +238,9 @@ function md_clear_overlay(map_id, layer_id) {
         window[map_id + 'layers'].splice(elem, 1);
     }
 
-    window[map_id + 'GoogleMapsOverlay'].setProps({layers: [...window[map_id + 'layers']]});
+    window[map_id + 'GoogleMapsOverlay'].setProps({
+        layers: [...window[map_id + 'layers']]
+    });
     const overlay = window[map_id + 'GoogleMapsOverlay'];
     overlay.setMap(window[map_id + 'map']);
 }

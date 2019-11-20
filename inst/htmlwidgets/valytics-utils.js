@@ -1,3 +1,4 @@
+selectedBuildingIndex = -1;
 selectedCommunityIndex = -1;
 currentZoom = -1;
 
@@ -33,4 +34,12 @@ function getCommunityColor(hex, object) {
     }
 
     return color;
+}
+
+function getBuildingColor(hex, object) {
+    if (object.index === selectedBuildingIndex) {
+        return [255, 255, 255, 255];
+    }
+
+    return md_hexToRGBA(hex);
 }
