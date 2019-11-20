@@ -1,12 +1,12 @@
 mapdeckDistrictDependency <- function() {
     list(
-    createHtmlDependency(
-    name = "district",
-    version = "1.0.0",
-    src = system.file("htmlwidgets/lib/valytics", package = "mapdeck"),
-    script = c("district.js"),
-    all_files = FALSE
-    )
+        createHtmlDependency(
+            name = "district",
+            version = "1.0.0",
+            src = system.file("htmlwidgets/lib/valytics", package = "mapdeck"),
+            script = c("district.js"),
+            all_files = FALSE
+        )
     )
 }
 
@@ -67,36 +67,37 @@ add_district_as_polygon <- function(
         line_width_max_pixels,
         digits,
         transitions,
+        TRUE,
         "add_polygon_district"
     )
 }
 
 add_district_as_path <- function(
-map,
-data = get_map_data(map),
-polyline = NULL,
-stroke_colour = NULL,
-stroke_width = NULL,
-stroke_opacity = NULL,
-dash_size = NULL,
-dash_gap = NULL,
-tooltip = NULL,
-billboard = FALSE,
-layer_id = NULL,
-id = NULL,
-auto_highlight = FALSE,
-highlight_colour = "#AAFFFFFF",
-palette = "viridis",
-na_colour = "#808080FF",
-legend = FALSE,
-legend_options = NULL,
-legend_format = NULL,
-update_view = TRUE,
-focus_layer = FALSE,
-width_min_pixels,
-width_max_pixels,
-digits = 6,
-transitions = NULL
+    map,
+    data = get_map_data(map),
+    polyline = NULL,
+    stroke_colour = NULL,
+    stroke_width = NULL,
+    stroke_opacity = NULL,
+    dash_size = NULL,
+    dash_gap = NULL,
+    tooltip = NULL,
+    billboard = FALSE,
+    layer_id = NULL,
+    id = NULL,
+    auto_highlight = FALSE,
+    highlight_colour = "#AAFFFFFF",
+    palette = "viridis",
+    na_colour = "#808080FF",
+    legend = FALSE,
+    legend_options = NULL,
+    legend_format = NULL,
+    update_view = TRUE,
+    focus_layer = FALSE,
+    width_min_pixels,
+    width_max_pixels,
+    digits = 6,
+    transitions = NULL
 ) {
     map <- addDependency(map, mapdeckDistrictDependency())
 

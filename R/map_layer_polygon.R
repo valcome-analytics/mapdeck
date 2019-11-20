@@ -135,6 +135,7 @@ add_polygon <- function(
 	line_width_max_pixels = 100000,
 	digits = 6,
 	transitions = NULL,
+	is_visible = TRUE,
 	js_function_prefix = "add_polygon"
 ) {
 
@@ -149,6 +150,7 @@ add_polygon <- function(
 	l[["tooltip"]] <- force( tooltip )
 	l[["id"]] <- force( id )
 	l[["na_colour"]] <- force( na_colour )
+	l[["is_visible"]] <- force( is_visible )
 	l[["highlight_colour"]] <- force( highlight_colour )
 	l[["line_width_min_pixels"]] <- force( line_width_min_pixels )
 	l[["line_width_max_pixels"]] <- force( line_width_max_pixels )
@@ -219,7 +221,7 @@ add_polygon <- function(
 	invoke_method(
 		map, jsfunc, map_type( map ), shape[["data"]], layer_id, light_settings,
 		auto_highlight, highlight_colour, shape[["legend"]], bbox, update_view, focus_layer,
-		js_transitions, is_extruded, line_width_min_pixels, line_width_max_pixels
+		js_transitions, is_extruded, line_width_min_pixels, line_width_max_pixels, is_visible
 		)
 }
 

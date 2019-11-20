@@ -143,6 +143,7 @@ add_scatterplot <- function(
 	focus_layer = FALSE,
 	transitions = NULL,
 	brush_radius = NULL,
+	is_visible = TRUE,
 	js_function_prefix = "add_scatterplot"
 ) {
 
@@ -158,6 +159,7 @@ add_scatterplot <- function(
 	l[["stroke_width"]] <- force( stroke_width )
 	l[["tooltip"]] <- force(tooltip)
 	l[["id"]] <- force(id)
+	l[["is_visible"]] <- force(is_visible)
 	l[["na_colour"]] <- force(na_colour)
 
 	l <- resolve_palette( l, palette )
@@ -217,8 +219,8 @@ add_scatterplot <- function(
 	invoke_method(
 		map, jsfunc, map_type( map ), shape[["data"]], layer_id, auto_highlight, highlight_colour,
 		shape[["legend"]], bbox, update_view, focus_layer, js_transitions,
-		radius_min_pixels, radius_max_pixels, brush_radius
-		)
+		radius_min_pixels, radius_max_pixels, brush_radius, is_visible
+	)
 }
 
 #' @rdname clear

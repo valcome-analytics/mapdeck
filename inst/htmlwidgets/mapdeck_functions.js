@@ -72,7 +72,6 @@ function md_on_hover({x, y, object, layer, index}, event) {
         }
         if (layerId.indexOf("communities") !== -1 && selectedCommunityIndex !== index) {
             selectedCommunityIndex = index;
-            buildingOpacity = 0;
             Shiny.onInputChange(layer.props.map_id + "_" + layerId + "_hover", index);
             Shiny.onInputChange("map_redraw_building", {});
         }
@@ -132,7 +131,6 @@ function md_initialise_map(el, x) {
             }
         }
     }
-
 }
 
 
@@ -161,6 +159,7 @@ function md_layer_clear(map_id, map_type, layer_id, layer) {
 function md_update_layer(map_id, layer_id, layer) {
 
     var elem = md_findObjectElementByKey(window[map_id + 'map'].props.layers, 'id', layer_id);
+
     if (elem != -1) {
         window[map_id + 'layers'][elem] = layer;
     } else {
@@ -215,7 +214,6 @@ function md_update_overlay(map_id, layer_id, layer) {
     overlay.setMap(window[map_id + 'map']);
 }
 
-
 function md_clear_overlay(map_id, layer_id) {
     var elem = md_findObjectElementByKey(window[map_id + 'layers'], 'id', layer_id);
     if (elem != -1) {
@@ -225,7 +223,6 @@ function md_clear_overlay(map_id, layer_id) {
     window[map_id + 'GoogleMapsOverlay'].setProps({layers: [...window[map_id + 'layers']]});
     const overlay = window[map_id + 'GoogleMapsOverlay'];
     overlay.setMap(window[map_id + 'map']);
-
 }
 
 function md_layer_click(map_id, layer, info) {
@@ -245,24 +242,4 @@ function md_layer_click(map_id, layer, info) {
 
     eventInfo = JSON.stringify(eventInfo);
     Shiny.onInputChange(map_id + "_" + layer + "_click", eventInfo);
-}
-
-function md_hide_layer(map_id, layer_id) {
-
-    console.log(layer_id);
-
-    let index = md_findObjectElementByKey(window[map_id + 'map'].props.layers, 'id', layer_id);
-    console.log(index);
-
-    if (index !== -1) {
-        let layer = window[map_id + 'layers'][index];
-        console.log(layer);
-    }
-
-    // ## issue 137
-    var vs = window[map_id + 'map'].viewState;
-    window[map_id + 'map'].setProps({
-        layers: [...window[map_id + 'layers']],
-        viewState: vs
-    });
 }
