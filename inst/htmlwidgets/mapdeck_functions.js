@@ -71,17 +71,13 @@ function md_on_hover({
         layerId = layerId.replace('-', '_');
 
         if (layerId.indexOf(buildingsLayerId) !== -1) {
-            console.log("BUILDING")
             selectedBuildingIndex = index;
             emitShinyHoverEvent("BUILDING", index)
         }
         if (layerId.indexOf("communities") !== -1 && selectedCommunityIndex !== index) {
-            console.log("COMMUNITY")
             selectedCommunityIndex = index;
             selectedBuildingIndex = -1 // when switching from a building to a communtiy we have to reset the selected building
             emitShinyHoverEvent("COMMUNITY", index)
-        } else {
-            console.log("Nothing hovered, index =  " + index)
         }
     }
 
@@ -238,6 +234,21 @@ function md_clear_overlay(map_id, layer_id) {
 }
 
 function md_layer_click(map_id, layer, info) {
+    console.log("=== md_layer_click initiated ===")
+    maplayers = window["mapmap"].props.layers;
+    console.log("LAYERS")
+    console.log(maplayers)
+
+    var result = window["mapmap"].pickMultipleObjects({
+        x: info.x,
+        y: info.y,
+        radius: 10,
+        layerIds: [info.layer.id],
+        depth: 10
+    });
+    console.log("=== PICKING RESULT ===")
+    console.log(result)
+
     if (!HTMLWidgets.shinyMode) {
         return;
     }
@@ -250,6 +261,8 @@ function md_layer_click(map_id, layer, info) {
     } else if (polygonLayerId.indexOf(communitiesLayerId) !== -1) {
         console.log("Clicked community")
         type = "COMMUNITY"
+    } else {
+        console.log("Type not supported")
     }
 
     console.log(info)

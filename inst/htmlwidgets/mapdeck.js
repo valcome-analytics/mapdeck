@@ -62,7 +62,10 @@ HTMLWidgets.widget({
                         layers: [],
                         //controller: myController
                         //onLayerHover: setTooltip
-                        onViewStateChange: ({viewState, interactionState}) => {
+                        onViewStateChange: ({
+                            viewState,
+                            interactionState
+                        }) => {
 
                             if (!HTMLWidgets.shinyMode) {
                                 return;
@@ -137,7 +140,7 @@ if (HTMLWidgets.shinyMode) {
 
         console.log("mapdeck sync (impacts performance if called constant)");
 
-        var id = data.id;   // the div id of the map
+        var id = data.id; // the div id of the map
         var el = document.getElementById(id);
         var map = el;
         var call = [];
