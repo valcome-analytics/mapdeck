@@ -1,4 +1,7 @@
+buildingsLayerId = "buildings";
 selectedBuildingIndex = -1;
+
+communitiesLayerId = "communities"
 selectedCommunityIndex = -1;
 currentZoom = -1;
 
@@ -37,11 +40,18 @@ function getCommunityColor(hex, object) {
 }
 
 function getBuildingColor(hex, object) {
+    color = md_hexToRGBA(hex)
     if (object.index === selectedBuildingIndex) {
-        return [255, 255, 255, 255];
+        brightener = 65
+        return [
+            Math.min(255, color[0] + brightener),
+            Math.min(255, color[1] + brightener),
+            Math.min(255, color[2] + brightener),
+            color[3]
+        ];
     }
 
-    return md_hexToRGBA(hex);
+    return color;
 }
 
 function emitShinyHoverEvent(type, index) {

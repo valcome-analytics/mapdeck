@@ -11,7 +11,7 @@ function add_polygon_building_geo(map_id, map_type, polygon_data, layer_id, ligh
         visible: isVisible,
         transitions: {
             getFillColor: {
-                duration: 500,
+                duration: 50,
                 enter: value => [value[0] / 255, value[1] / 255, value[2] / 255, 0]
             },
             getElevation: {
@@ -40,7 +40,7 @@ function add_scatterplot_building_geo(map_id, map_type, scatter_data, layer_id, 
         visible: isVisible,
         transitions: {
             getFillColor: {
-                duration: 500,
+                duration: 50,
                 enter: value => [value[0] / 255, value[1] / 255, value[2] / 255, 0]
             }
         }

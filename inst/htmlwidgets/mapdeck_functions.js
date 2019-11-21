@@ -69,9 +69,8 @@ function md_on_hover({
         let layerId = layer.id;
         let mapId = layer.props.map_id;
         layerId = layerId.replace('-', '_');
-        buildingsLayerIdPrefix = "buildings";
 
-        if (layerId.indexOf(buildingsLayerIdPrefix) !== -1) {
+        if (layerId.indexOf(buildingsLayerId) !== -1) {
             console.log("BUILDING")
             selectedBuildingIndex = index;
             emitShinyHoverEvent("BUILDING", index)
@@ -82,7 +81,7 @@ function md_on_hover({
             selectedBuildingIndex = -1 // when switching from a building to a communtiy we have to reset the selected building
             emitShinyHoverEvent("COMMUNITY", index)
         } else {
-            console.log("Nothing hovered")
+            console.log("Nothing hovered, index =  " + index)
         }
     }
 
@@ -239,20 +238,26 @@ function md_clear_overlay(map_id, layer_id) {
 }
 
 function md_layer_click(map_id, layer, info) {
-
     if (!HTMLWidgets.shinyMode) {
         return;
     }
 
+    polygonLayerId = info.layer.id
+
+    if (polygonLayerId.indexOf(buildingsLayerId) !== -1) {
+        console.log("Clicked building")
+        type = "BUILDING"
+    } else if (polygonLayerId.indexOf(communitiesLayerId) !== -1) {
+        console.log("Clicked community")
+        type = "COMMUNITY"
+    }
+
+    console.log(info)
+
     var eventInfo = {
         index: info.index,
-        color: info.color,
-        object: info.object,
-        layerId: info.layer_id,
-        lat: info.lngLat[1],
-        lon: info.lngLat[0]
+        type: type
     };
 
-    eventInfo = JSON.stringify(eventInfo);
-    Shiny.onInputChange(map_id + "_" + layer + "_click", eventInfo);
+    Shiny.onInputChange("map_element_click", eventInfo);
 }

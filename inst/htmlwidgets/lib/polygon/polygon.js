@@ -1,6 +1,6 @@
 function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_settings, auto_highlight, highlight_colour,
-                         legend, bbox, update_view, focus_layer, js_transition, is_extruded,
-                         line_width_min_pixels, line_width_max_pixels) {
+    legend, bbox, update_view, focus_layer, js_transition, is_extruded,
+    line_width_min_pixels, line_width_max_pixels) {
 
     const polygonLayer = getBasePolygon(map_id, map_type, polygon_data, layer_id, light_settings, auto_highlight, highlight_colour,
         legend, bbox, update_view, focus_layer, js_transition, is_extruded,
@@ -10,8 +10,8 @@ function add_polygon_geo(map_id, map_type, polygon_data, layer_id, light_setting
 }
 
 function add_polygon_polyline(map_id, map_type, polygon_data, layer_id, light_settings, auto_highlight, highlight_colour,
-                              legend, bbox, update_view, focus_layer, js_transition, is_extruded,
-                              line_width_min_pixels, line_width_max_pixels) {
+    legend, bbox, update_view, focus_layer, js_transition, is_extruded,
+    line_width_min_pixels, line_width_max_pixels) {
 
     const polygonLayer = new PolygonLayer({
         map_id: map_id,
@@ -59,8 +59,8 @@ function decode_polygons(polylines) {
 }
 
 function getBasePolygon(map_id, map_type, polygon_data, layer_id, light_settings, auto_highlight, highlight_colour,
-                        legend, bbox, update_view, focus_layer, js_transition, is_extruded,
-                        line_width_min_pixels, line_width_max_pixels, additions = {}) {
+    legend, bbox, update_view, focus_layer, js_transition, is_extruded,
+    line_width_min_pixels, line_width_max_pixels, additions = {}) {
     let polygonLayer = {
         map_id: map_id,
         id: 'polygon-' + layer_id,
@@ -85,7 +85,10 @@ function getBasePolygon(map_id, map_type, polygon_data, layer_id, light_settings
         transitions: js_transition || {}
     };
 
-    return new PolygonLayer({...polygonLayer, ...additions});
+    return new PolygonLayer({
+        ...polygonLayer,
+        ...additions
+    });
 }
 
 function addBasePolygonToMap(map_id, layer_id, polygonLayer, map_type, legend, focus_layer, bbox, update_view) {
