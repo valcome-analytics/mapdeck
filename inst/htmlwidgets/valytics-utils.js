@@ -43,3 +43,10 @@ function getBuildingColor(hex, object) {
 
     return md_hexToRGBA(hex);
 }
+
+function emitShinyHoverEvent(type, index) {
+    Shiny.onInputChange("map_element_hover", {
+        index: index,
+        type: type
+    });
+}

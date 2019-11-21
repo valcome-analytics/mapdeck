@@ -72,24 +72,17 @@ function md_on_hover({
         buildingsLayerIdPrefix = "buildings";
 
         if (layerId.indexOf(buildingsLayerIdPrefix) !== -1) {
+            console.log("BUILDING")
             selectedBuildingIndex = index;
-            //Shiny.onInputChange(mapId + "_" + buildingsLayerIdPrefix + "_hover", index);
-            //event.stopPropagation();
-
-            Shiny.onInputChange("map_element_hover", {
-                index: index,
-                type: "BUILDING"
-            });
+            emitShinyHoverEvent("BUILDING", index)
         }
         if (layerId.indexOf("communities") !== -1 && selectedCommunityIndex !== index) {
+            console.log("COMMUNITY")
             selectedCommunityIndex = index;
-            //Shiny.onInputChange(mapId + "_" + layerId + "_hover", index);
-            //Shiny.onInputChange("map_redraw_building", {});
-
-            Shiny.onInputChange("map_element_hover", {
-                index: index,
-                type: "COMMUNITY"
-            });
+            selectedBuildingIndex = -1 // when switching from a building to a communtiy we have to reset the selected building
+            emitShinyHoverEvent("COMMUNITY", index)
+        } else {
+            console.log("Nothing hovered")
         }
     }
 
