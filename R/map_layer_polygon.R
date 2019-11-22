@@ -111,6 +111,7 @@ mapdeckPolygonDependency <- function() {
 add_polygon <- function(
 	map,
 	data = get_map_data(map),
+	identifier = NULL,
 	polyline = NULL,
 	stroke_colour = NULL,
 	stroke_width = NULL,
@@ -154,6 +155,7 @@ add_polygon <- function(
 	l[["highlight_colour"]] <- force( highlight_colour )
 	l[["line_width_min_pixels"]] <- force( line_width_min_pixels )
 	l[["line_width_max_pixels"]] <- force( line_width_max_pixels )
+	l[["identifier"]] <- force( identifier )
 
 	l <- resolve_palette( l, palette )
 	l <- resolve_legend( l, legend )
@@ -221,8 +223,7 @@ add_polygon <- function(
 	invoke_method(
 		map, jsfunc, map_type( map ), shape[["data"]], layer_id, light_settings,
 		auto_highlight, highlight_colour, shape[["legend"]], bbox, update_view, focus_layer,
-		js_transitions, is_extruded, line_width_min_pixels, line_width_max_pixels, is_visible
-		)
+		js_transitions, is_extruded, line_width_min_pixels, line_width_max_pixels, is_visible)
 }
 
 #' @rdname clear

@@ -3,6 +3,7 @@ selectedBuildingIndex = -1;
 
 communitiesLayerId = "communities"
 selectedCommunityIndex = -1;
+lastHoveredCommunityIndex = -1;
 currentZoom = -1;
 
 globalMapId = '';

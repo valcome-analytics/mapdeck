@@ -13,6 +13,7 @@ mapdeckBuildingDependency <- function() {
 add_building_as_polygon <- function(
 	map,
 	data = get_map_data(map),
+	identifier = NULL,
 	polyline = NULL,
 	stroke_colour = NULL,
 	stroke_width = NULL,
@@ -45,6 +46,7 @@ add_building_as_polygon <- function(
 	add_polygon(
 		map,
 		data,
+		identifier,
 		polyline,
 		stroke_colour,
 		stroke_width,
