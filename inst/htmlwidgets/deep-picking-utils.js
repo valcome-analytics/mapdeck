@@ -57,8 +57,8 @@ function pickMultipleObjects(x, y, layerIds) {
     return window["mapmap"].pickMultipleObjects({
         x: x,
         y: y,
-        radius: 15,
+        radius: 5,
         layerIds: layerIds,
-        depth: 3
+        depth: 1
     });
 }
