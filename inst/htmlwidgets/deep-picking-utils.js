@@ -1,14 +1,16 @@
+var handleDeepPickingForBuildingOnHoverDebounced = debounce(function (x, y, object) {
+    handleDeepPickingForBuildingOnHover(x, y, object)
+}, 15);
+
 function handleDeepPickingForBuildingOnHover(x, y, object) {
     deepPickedBuilding = doDeepPickingForBuildingAt(x, y, object);
 
     if (deepPickedBuilding != null) {
-        console.log("+++ Found deep picked building during hover");
         selectedBuildingIndex = deepPickedBuilding.index;
         emitShinyHoverEvent("BUILDING", selectedBuildingIndex)
     } else if (selectedBuildingIndex != -1) {
         selectedBuildingIndex = -1 // when switching from a building to a communtiy we have to reset the selected building
         emitShinyHoverEvent("BUILDING", selectedBuildingIndex)
-        console.log("--- Resetting building index")
     }
 }
 
@@ -24,8 +26,6 @@ function doDeepPickingForBuildingAt(x, y, object) {
 
 function findDeepBuildingsAt(x, y, object) {
     identifier = object.properties.identifier;
-    console.log("Perform deep pick for buildings in community: " + identifier);
-
     buildingLayerIds = findBuildingLayersByIdentifier(identifier);
 
     if (buildingLayerIds.length > 0) {

@@ -75,7 +75,7 @@ function md_on_hover({
             selectedCommunityIndex = index;
 
             if (object != null) {
-                handleDeepPickingForBuildingOnHover(x, y, object);
+                handleDeepPickingForBuildingOnHoverDebounced(x, y, object);
             }
 
             if (index >= 0) {
@@ -84,7 +84,7 @@ function md_on_hover({
 
             emitShinyHoverEvent("COMMUNITY", index);
         } else if (object != null) {
-            handleDeepPickingForBuildingOnHover(x, y, object);
+            handleDeepPickingForBuildingOnHoverDebounced(x, y, object);
         }
     }
 
