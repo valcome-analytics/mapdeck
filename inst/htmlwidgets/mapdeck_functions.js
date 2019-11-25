@@ -65,40 +65,26 @@ function md_on_hover({
 }, event) {
     // object is the data object sent to the layer function
     if (HTMLWidgets.shinyMode) {
-        let layerId = layer.id;
-        let mapId = layer.props.map_id;
-        layerId = layerId.replace('-', '_');
+        let layerId = layer.id.replace('-', '_');
 
-
-        if (layerId.indexOf(buildingsLayerId) !== -1) {
+        if (isBuildingLayer(layerId)) {
             selectedBuildingIndex = index;
             emitShinyHoverEvent("BUILDING", index)
-        } else if (layerId.indexOf(communitiesLayerId) !== -1 &&
-            selectedCommunityIndex !== index) {
+        } else if (isCommunityLayer(layerId) && selectedCommunityIndex !== index) {
 
             selectedCommunityIndex = index;
-            console.log("OBJECT = " + object)
-            var deepPickedBuilding = null;
-            if (object != null) {
-                deepPickedBuilding = deepPickForBuilding(x, y, object);
-            }
 
-            if (deepPickedBuilding != null) {
-                console.log("Found deep picked building during hover");
-                selectedBuildingIndex = deepPickedBuilding.index;
-                emitShinyHoverEvent("BUILDING", selectedBuildingIndex)
-            } else if (selectedBuildingIndex != -1) {
-                emitShinyHoverEvent("BUILDING", selectedBuildingIndex)
-                selectedBuildingIndex = -1 // when switching from a building to a communtiy we have to reset the selected building
+            if (object != null) {
+                handleDeepPickingForBuildingOnHover(x, y, object);
             }
 
             if (index >= 0) {
                 lastHoveredCommunityIndex = index;
             }
 
-            emitShinyHoverEvent("COMMUNITY", index)
-        } else {
-            console.log("Hovering index = " + index)
+            emitShinyHoverEvent("COMMUNITY", index);
+        } else if (object != null) {
+            handleDeepPickingForBuildingOnHover(x, y, object);
         }
     }
 
@@ -268,7 +254,7 @@ function md_layer_click(map_id, layer, info) {
         console.log("Clicked community");
 
         // Do deep check
-        var pickedBuilding = deepPickForBuilding(info.x, info.y, info.object);
+        var pickedBuilding = doDeepPickingForBuildingAt(info.x, info.y, info.object);
 
         if (pickedBuilding != null) {
             console.log("Found building during deep picking");
@@ -291,36 +277,4 @@ function md_layer_click(map_id, layer, info) {
     };
 
     Shiny.onInputChange("map_element_click", eventInfo);
-}
-
-// TODO: move function
-function deepPickForBuilding(x, y, object) {
-    maplayers = window["mapmap"].props.layers;
-    buildingLayerIds = [];
-    identifier = object.properties.identifier;
-
-    console.log("Perform deep pick for buildings in community: " + identifier);
-    for (var i = 0; i < maplayers.length; i++) {
-        if (maplayers[i].id.indexOf("polygon-building") != -1 &&
-            maplayers[i].id.indexOf(identifier) != -1) {
-            buildingLayerIds.push(maplayers[i].id);
-        }
-    }
-
-    if (buildingLayerIds.length > 0) {
-        // Perform deep pick
-        var result = window["mapmap"].pickMultipleObjects({
-            x: x,
-            y: y,
-            radius: 25,
-            layerIds: buildingLayerIds,
-            depth: 10
-        });
-    }
-
-    if (result != null && result.length > 0) {
-        return result[0]; // return first building found
-    } else {
-        return null;
-    }
 }

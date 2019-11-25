@@ -40,6 +40,14 @@ function getCommunityColor(hex, object) {
     return color;
 }
 
+function isCommunityLayer(layerId) {
+    return layerId.indexOf(communitiesLayerId) !== -1;
+}
+
+function isBuildingLayer(layerId) {
+    return layerId.indexOf(buildingsLayerId) !== -1;
+}
+
 function getBuildingColor(hex, object) {
     color = md_hexToRGBA(hex)
     if (object.index === selectedBuildingIndex) {
@@ -53,6 +61,14 @@ function getBuildingColor(hex, object) {
     }
 
     return color;
+}
+
+function isNotEmpty(array) {
+    return !isEmpty(array)
+}
+
+function isEmpty(array) {
+    return array == null || array.length === 0 || array === "undefined"
 }
 
 function emitShinyHoverEvent(type, index) {
