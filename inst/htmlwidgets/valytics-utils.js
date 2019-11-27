@@ -3,7 +3,7 @@ selectedBuildingIndex = -1;
 
 communitiesLayerId = "communities"
 selectedCommunityIndex = -1;
-lastHoveredCommunityIndex = -1;
+hoverNeedsApproval = false;
 currentZoom = -1;
 
 globalMapId = '';
@@ -75,6 +75,13 @@ function emitShinyHoverEvent(type, index) {
     Shiny.onInputChange("map_element_hover", {
         index: index,
         type: type
+    });
+}
+
+function emitShinyHoverApproveEvent(approve) {
+    Shiny.onInputChange("map_element_hover_approve", {
+        approve: approve,
+        index: selectedCommunityIndex
     });
 }
 

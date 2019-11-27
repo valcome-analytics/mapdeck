@@ -71,15 +71,11 @@ function md_on_hover({
             selectedBuildingIndex = index;
             emitShinyHoverEvent("BUILDING", index)
         } else if (isCommunityLayer(layerId) && selectedCommunityIndex !== index) {
-
             selectedCommunityIndex = index;
+            hoverNeedsApproval = true;
 
             if (object != null) {
                 handleDeepPickingForBuildingOnHoverDebounced(x, y, object);
-            }
-
-            if (index >= 0) {
-                lastHoveredCommunityIndex = index;
             }
 
             emitShinyHoverEvent("COMMUNITY", index);

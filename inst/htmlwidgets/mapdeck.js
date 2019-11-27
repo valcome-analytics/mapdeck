@@ -92,6 +92,16 @@ HTMLWidgets.widget({
                                 Shiny.onInputChange(el.id + '_zoom', viewState.zoom);
                             }
                         },
+                        onHover(info, event) {
+                            if (!HTMLWidgets.shinyMode) {
+                                return;
+                            }
+
+                            if (hoverNeedsApproval) {
+                                hoverNeedsApproval = false;
+                                emitShinyHoverApproveEvent(event.type == "pointermove")
+                            }
+                        },
                         onDragStart(info, event) {
                             if (!HTMLWidgets.shinyMode) {
                                 return;
@@ -115,8 +125,7 @@ HTMLWidgets.widget({
                                 return;
                             }
                             // Shiny.onInputChange(el.id +'_resize', size);
-                        }
-
+                        },
                     });
 
                     window[el.id + 'map'] = deckgl;
